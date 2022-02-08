@@ -5,9 +5,9 @@ using SamuraiApp.Domain;
 
 namespace SamuraiApp.UI
 {
-    class Program
+    internal class Program
     {
-        private static SamuraiContext _context = new SamuraiContext();
+        private static readonly SamuraiContext _context = new();
 
         private static void Main(string[] args)
         {
@@ -21,10 +21,11 @@ namespace SamuraiApp.UI
 
         private static void AddSamurai()
         {
-            var samurai = new Samurai { Name = "Julie" };
+            var samurai = new Samurai {Name = "Julie"};
             _context.Samurais.Add(samurai);
             _context.SaveChanges();
         }
+
         private static void GetSamurais(string text)
         {
             var samurais = _context.Samurais.ToList();
