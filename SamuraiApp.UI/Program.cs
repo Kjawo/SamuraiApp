@@ -10,6 +10,7 @@ namespace SamuraiApp.UI
     internal class Program
     {
         private static readonly SamuraiContext _context = new();
+        private static readonly SamuraiContextNoTracking _contextNT = new();
 
         private static void Main(string[] args)
         {
