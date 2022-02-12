@@ -23,7 +23,8 @@ namespace SamuraiApp.UI
             //RetrieveAndUpdateSamurai();
             //RetrieveAndUpdateMultipleSamurais();
             // MultipleDatabaseOperations();
-            RetrieveAndDeleteASamurai();
+            // RetrieveAndDeleteASamurai();
+            QueryAndUpdateBattles_Disconnected();
 
             Console.Write("Press any key...");
             Console.ReadKey();
@@ -105,6 +106,25 @@ namespace SamuraiApp.UI
             var samurai = _context.Samurais.Find(3);
             _context.Samurais.Remove(samurai);
             _context.SaveChanges();
+        }
+
+        private static void QueryAndUpdateBattles_Disconnected()
+        {
+            List<Battle> disconnectedBattles;
+            using (var context1 = new SamuraiContext())
+            {
+                disconnectedBattles = _context.Battles.ToList();
+            } //context1 is disposed
+            disconnectedBattles.ForEach(b =>
+            {
+                b.StartDate = new DateTime(1570, 01, 01);
+                b.EndDate = new DateTime(1570, 12, 1);
+            });
+            using (var context2 = new SamuraiContext())
+            {
+                context2.UpdateRange(disconnectedBattles);
+                context2.SaveChanges();
+            }
         }
     }
 }
