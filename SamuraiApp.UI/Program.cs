@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using SamuraiApp.Data;
@@ -21,7 +22,8 @@ namespace SamuraiApp.UI
             // QueryAggregates();
             //RetrieveAndUpdateSamurai();
             //RetrieveAndUpdateMultipleSamurais();
-            MultipleDatabaseOperations();
+            // MultipleDatabaseOperations();
+            RetrieveAndDeleteASamurai();
 
             Console.Write("Press any key...");
             Console.ReadKey();
@@ -95,6 +97,13 @@ namespace SamuraiApp.UI
             var samurai = _context.Samurais.FirstOrDefault();
             samurai.Name += "San";
             _context.Samurais.Add(new Samurai { Name = "Shino" });
+            _context.SaveChanges();
+        }
+
+        private static void RetrieveAndDeleteASamurai()
+        {
+            var samurai = _context.Samurais.Find(3);
+            _context.Samurais.Remove(samurai);
             _context.SaveChanges();
         }
     }
