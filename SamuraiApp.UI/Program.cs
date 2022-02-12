@@ -17,7 +17,8 @@ namespace SamuraiApp.UI
             // AddSamurai();
             // GetSamurais("After Add:");
             // AddVariousTypes();
-            QueryFilters();
+            // QueryFilters();
+            QueryAggregates();
 
             Console.Write("Press any key...");
             Console.ReadKey();
@@ -65,6 +66,13 @@ namespace SamuraiApp.UI
             // var samurais = _context.Samurais.Where(s => s.Name == name).ToList();
             var filter = "J%";
             var samurais = _context.Samurais.Where(s => EF.Functions.Like(s.Name, filter)).ToList();
+        }
+
+        private static void QueryAggregates()
+        {
+            // var name = "Sampson";
+            // var samurais = _context.Samurais.FirstOrDefault(s => s.Name == name);
+            var samurais = _context.Samurais.Find(2);
         }
     }
 }
