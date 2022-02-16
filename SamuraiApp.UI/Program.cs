@@ -14,6 +14,7 @@ namespace SamuraiApp.UI
 
         private static void Main(string[] args)
         {
+            #region InteractingWithEFCoreDataModel
             // _context.Database.EnsureCreated();
             // GetSamurais("Before Add:");
             // AddSamurai();
@@ -25,12 +26,15 @@ namespace SamuraiApp.UI
             //RetrieveAndUpdateMultipleSamurais();
             // MultipleDatabaseOperations();
             // RetrieveAndDeleteASamurai();
-            QueryAndUpdateBattles_Disconnected();
+            //QueryAndUpdateBattles_Disconnected();
+            #endregion
+
 
             Console.Write("Press any key...");
             Console.ReadKey();
         }
 
+        #region InteractingWithEFCoreDataModel
         private static void AddVariousTypes()
         {
             _context.AddRange(new Samurai { Name = "Shimada" },
@@ -127,5 +131,6 @@ namespace SamuraiApp.UI
                 context2.SaveChanges();
             }
         }
+        #endregion
     }
 }
