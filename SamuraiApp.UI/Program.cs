@@ -30,7 +30,8 @@ namespace SamuraiApp.UI
             #endregion
 
             #region InteractingWithRelatedData
-            InsertNewSamuraiWithAQuote();
+            //InsertNewSamuraiWithAQuote();
+            Simpler_AddQuoteToExistingSamuraiNotTracked(1);
             #endregion
 
             Console.Write("Press any key...");
@@ -151,6 +152,15 @@ namespace SamuraiApp.UI
             _context.Samurais.Add(samurai);
             _context.SaveChanges();
         }
+
+        private static void Simpler_AddQuoteToExistingSamuraiNotTracked(int samuraiId)
+        {
+            var quote = new Quote { Text = "Thanks for dinner!", SamuraiId = samuraiId };
+            using var newContext = new SamuraiContext();
+            newContext.Quotes.Add(quote);
+            newContext.SaveChanges();
+        }
+
         #endregion
     }
 }
