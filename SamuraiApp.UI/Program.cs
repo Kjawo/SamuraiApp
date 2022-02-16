@@ -29,6 +29,9 @@ namespace SamuraiApp.UI
             //QueryAndUpdateBattles_Disconnected();
             #endregion
 
+            #region InteractingWithRelatedData
+            InsertNewSamuraiWithAQuote();
+            #endregion
 
             Console.Write("Press any key...");
             Console.ReadKey();
@@ -130,6 +133,23 @@ namespace SamuraiApp.UI
                 context2.UpdateRange(disconnectedBattles);
                 context2.SaveChanges();
             }
+        }
+        #endregion
+
+        #region InteractingWithRelatedData
+        private static void InsertNewSamuraiWithAQuote()
+        {
+            var samurai = new Samurai
+            {
+                Name = "Kamebi Shimada",
+                Quotes = new List<Quote>
+                {
+                    new Quote {Text = "I've come to save you"}
+                }
+            };
+
+            _context.Samurais.Add(samurai);
+            _context.SaveChanges();
         }
         #endregion
     }
