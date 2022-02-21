@@ -3,12 +3,12 @@ using System;
 
 namespace SamuraiApp.Data.Migrations
 {
-    public partial class m2mpayload : Migration
+    public partial class bringbackthatpayload : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_BattleSamurai_Battle_BattlesBattleID",
+                name: "FK_BattleSamurai_Battles_BattlesBattleID",
                 table: "BattleSamurai");
 
             migrationBuilder.DropForeignKey(
@@ -38,10 +38,10 @@ namespace SamuraiApp.Data.Migrations
                 defaultValueSql: "getdate()");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_BattleSamurai_Battle_BattleId",
+                name: "FK_BattleSamurai_Battles_BattleId",
                 table: "BattleSamurai",
                 column: "BattleId",
-                principalTable: "Battle",
+                principalTable: "Battles",
                 principalColumn: "BattleID",
                 onDelete: ReferentialAction.Cascade);
 
@@ -57,7 +57,7 @@ namespace SamuraiApp.Data.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_BattleSamurai_Battle_BattleId",
+                name: "FK_BattleSamurai_Battles_BattleId",
                 table: "BattleSamurai");
 
             migrationBuilder.DropForeignKey(
@@ -84,10 +84,10 @@ namespace SamuraiApp.Data.Migrations
                 newName: "IX_BattleSamurai_SamuraisId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_BattleSamurai_Battle_BattlesBattleID",
+                name: "FK_BattleSamurai_Battles_BattlesBattleID",
                 table: "BattleSamurai",
                 column: "BattlesBattleID",
-                principalTable: "Battle",
+                principalTable: "Battles",
                 principalColumn: "BattleID",
                 onDelete: ReferentialAction.Cascade);
 

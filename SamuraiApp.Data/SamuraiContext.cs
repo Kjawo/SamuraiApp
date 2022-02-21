@@ -1,7 +1,7 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SamuraiApp.Domain;
+using System;
 
 namespace SamuraiApp.Data
 {
@@ -30,6 +30,8 @@ namespace SamuraiApp.Data
                     bs => bs.HasOne<Samurai>().WithMany())
                 .Property(bs => bs.DateJoined)
                 .HasDefaultValueSql("getdate()");
+
+            modelBuilder.Entity<Horse>().ToTable("Horses");
         }
     }
 }
