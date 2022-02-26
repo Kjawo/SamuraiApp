@@ -32,6 +32,7 @@ namespace SamuraiAPI
                 opt.UseSqlServer(Configuration.GetConnectionString("SamuraiConnectionString"))
                 .EnableSensitiveDataLogging()
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking));
+            services.AddScoped<BusinessLogicData>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

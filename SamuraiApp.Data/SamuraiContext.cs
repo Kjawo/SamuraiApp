@@ -11,11 +11,6 @@ namespace SamuraiApp.Data
         {
 
         }
-        public SamuraiContext(DbContextOptions<SamuraiContext> options) 
-            :base(options)
-        {
-
-        }
 
         public SamuraiContext(DbContextOptions options) : base(options)
         {
