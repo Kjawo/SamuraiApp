@@ -1,7 +1,7 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using System;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 using SamuraiApp.Domain;
-using System;
 
 namespace SamuraiApp.Data
 {
@@ -16,6 +16,11 @@ namespace SamuraiApp.Data
         {
 
         }
+
+        public SamuraiContext(DbContextOptions options) : base(options)
+        {
+        }
+
         public DbSet<Samurai> Samurais { get; set; }
         public DbSet<Quote> Quotes { get; set; }
         public DbSet<Battle> Battles { get; set; }
@@ -23,11 +28,11 @@ namespace SamuraiApp.Data
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(
-                "Data Source= (localdb)\\MSSQLLocalDB; Initial Catalog=SamuraiAppDataFirstLook")
-                .LogTo(Console.WriteLine, new[] { DbLoggerCategory.Database.Name },
-                    LogLevel.Information)
-                .EnableSensitiveDataLogging();
+            if (!optionsBuilder.IsConfigured)
+            {
+                optionsBuilder.UseSqlServer(
+                    "Data Source= (localdb)\\MSSQLLocalDB; Initial Catalog=SamuraiTestDataFirstLook");
+            }
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
