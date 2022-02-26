@@ -59,6 +59,8 @@ namespace SamuraiApp.UI
             //ExecuteSomeRawSql();
             #endregion
 
+            AddSamuraisByName("Shimada", "Okamoto", "Kikuchio", "Hayashida");
+
             Console.Write("Press any key...");
             Console.ReadKey();
         }
@@ -76,12 +78,10 @@ namespace SamuraiApp.UI
 
         private static void AddSamuraisByName(params string[] names)
         {
-            foreach (string name in names)
-            {
-                _context.Samurais.Add(new Samurai { Name = name });
-            }
-            _context.SaveChanges();
+            var _bizData = new BusinessDataLogic();
+            var newSamuraisCreatedCount = _bizData.AddSamuraisByName(names);
         }
+
         private static void AddSamurais(Samurai[] samurais)
         {
             //AddRange can take an array or an IEnumerable e.g. List<Samurai>
